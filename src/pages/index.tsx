@@ -18,13 +18,26 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Buenos HUmos Zaragoza</title>
+        <title>Buenos Humos Zaragoza</title>
         <meta
           name="description"
           content="Club de fumadores Buenos Humos Zaragoza"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:title"
+          content="Buenos Humos Zaragoza es un club de fumadores de tabacos premium"
+        />
+        <meta property="og:image" content="/Images/bhz-web-logo.png" />
+        <meta property="og:image:alt" content="Buenos Humos Zaragoza" />
+        <meta property="twitter:image" content="Images/bhz-web-logo.png" />
+        <meta property="twitter:image:alt" content="Buenos Humos Zaragoza" />
+        <meta
+          property="og:description"
+          content="Club de fumadores Buenos Humos Zaragoza"
+        />
+        <meta content="index,follow" name="robots" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={mainContainerStyles}>
         <div className={heroContainerStyles}>
