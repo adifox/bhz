@@ -1,0 +1,114 @@
+@use "../../styles/global/index" as g;
+
+.navBarContainer {
+  position: fixed;
+  width: 100%;
+  // background-color: #fff;
+  background-color: #29362f;
+  z-index: 1000;
+  color: #fff;
+}
+.mainWrapper {
+  width: 100%;
+  padding: 0px 32px;
+}
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.logoWrapper {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.logoBackground {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  width: 240px;
+  border-radius: 14px;
+}
+.companyNameStyles {
+  font-size: 48px;
+  font-weight: 700;
+  margin-left: 16px;
+}
+.navBar,
+.socialIcons {
+  display: flex;
+
+  ul {
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+
+    li {
+      list-style: none;
+      // margin-right: 16px;
+      display: flex;
+      border-bottom: 3px solid transparent;
+      transition: all 0.15s ease;
+
+      &:hover {
+        transition: all 0.15s ease;
+        // border-bottom: 3px solid a.$secondary-color;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+
+        span {
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+.socialIcons {
+  width: 250px;
+}
+.navBar {
+  ul {
+    li {
+      margin-left: 16px;
+      margin-right: 0px;
+    }
+  }
+}
+
+.mobileMenuIconWrapper {
+  display: none;
+}
+
+@media (max-width: g.$large-desktop) {
+  .mainWrapper {
+    width: 100%;
+    padding: 0px 16px;
+  }
+}
+
+@media (max-width: g.$tablet-bp) {
+  .navBar {
+    display: none;
+  }
+  .socialIcons {
+    width: auto;
+  }
+  // .logoWrapper {
+  //   justify-content: flex-start;
+  // }
+  .companyNameStyles {
+    font-size: 32px;
+  }
+  .mobileMenuIconWrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}
