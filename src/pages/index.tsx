@@ -30,7 +30,7 @@ export default function Home() {
         <div className={heroContainerStyles}>
           <Image
             className={imageStyles}
-            src="/Images/whiskey-and-cigars.jpeg"
+            src="/Images/whiskey-and-cigars.jpg"
             alt="Buenos Humos Zaragoza Logo"
             fill
             priority
