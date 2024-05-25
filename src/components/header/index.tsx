@@ -44,7 +44,11 @@ export const Header = () => {
           <div className={logoWrapper}>
             <Link href="/" className={linkStyles}>
               <div className={logoBackground}>
-                <Image src={"/Images/bhz-final.svg"} alt="Compico logo" fill />
+                <Image
+                  src={"/Images/bhz-web-logo.png"}
+                  alt="Compico logo"
+                  fill
+                />
               </div>
               {/* <p className={companyNameStyles}>Buenos Humos Zaragoza</p> */}
             </Link>
