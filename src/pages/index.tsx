@@ -19,7 +19,6 @@ const {
 } = styles;
 
 export default function Home({ storyblokData }: PageProps) {
-  console.log("THE STBLOK DATA:", storyblokData);
   const {
     story: { content },
   } = storyblokData.data;
@@ -32,8 +31,6 @@ export default function Home({ storyblokData }: PageProps) {
       };
     }
   });
-
-  console.log("THE GALLERY DATA:", data);
 
   return (
     <>
