@@ -48,6 +48,7 @@ export const Header = () => {
                   src={"/Images/bhz-web-logo.png"}
                   alt="Compico logo"
                   fill
+                  priority
                 />
               </div>
               {/* <p className={companyNameStyles}>Buenos Humos Zaragoza</p> */}

@@ -1,5 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
+import { PhotoGallery } from "@/components/ui-components/photo-gallery";
+import { BecomeMember } from "@/components/ui-components/become-member";
+import { StoryblokItem, PageProps } from "../../types";
+import { getStoryblokData } from "../../utils/storyblok";
 import styles from "@/styles/Home.module.scss";
 
 const {
@@ -14,7 +18,23 @@ const {
   sectionImageWrapperStyles,
 } = styles;
 
-export default function Home() {
+export default function Home({ storyblokData }: PageProps) {
+  console.log("THE STBLOK DATA:", storyblokData);
+  const {
+    story: { content },
+  } = storyblokData.data;
+
+  const [data] = content?.body?.map((story: StoryblokItem) => {
+    if (story.component === "imageGallery") {
+      return {
+        photos: story.photos,
+        headline: story.headline,
+      };
+    }
+  });
+
+  console.log("THE GALLERY DATA:", data);
+
   return (
     <>
       <Head>
@@ -80,6 +100,12 @@ export default function Home() {
               />
             </div>
           </div>
+        </section>
+        <section className={sectionWrapperStyles}>
+          <PhotoGallery headline={data?.headline} photos={data?.photos} />
+        </section>
+        <section className={sectionWrapperStyles}>
+          <BecomeMember />
         </section>
       </main>
       {/* <main className={styles.main}>
@@ -180,3 +206,11 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  const storyblokData = await getStoryblokData("home");
+
+  return {
+    props: { storyblokData },
+  };
+};
