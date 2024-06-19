@@ -51,14 +51,13 @@ export const Header = () => {
                   priority
                 />
               </div>
-              {/* <p className={companyNameStyles}>Buenos Humos Zaragoza</p> */}
             </Link>
           </div>
           <nav className={navBar}>
             <ul>
               <li>
-                <Link href="/sobrenosotros" className={linkStyles}>
-                  <span>Sobre nosotros</span>
+                <Link href="/blog" className={linkStyles}>
+                  <span>Descubre más</span>
                 </Link>
               </li>
               <li>

@@ -23,12 +23,26 @@ export default function Home({ storyblokData }: PageProps) {
     story: { content },
   } = storyblokData.data;
 
-  const [data] = content?.body?.map((story: StoryblokItem) => {
+  const storyblokContent = content?.body?.map((story: StoryblokItem) => {
     if (story.component === "imageGallery") {
-      return {
-        photos: story.photos,
-        headline: story.headline,
-      };
+      return (
+        <section key={story._uid} className={sectionWrapperStyles}>
+          <PhotoGallery headline={story?.headline} photos={story?.photos} />
+        </section>
+      );
+    }
+
+    if (story.component === "mediaWithText") {
+      return (
+        <section key={story._uid} className={sectionWrapperStyles}>
+          <BecomeMember
+            headline={story.headline}
+            bodyText={story.bodyText}
+            image={story.image}
+            ctaButtonText={story.ctaButtonText}
+          />
+        </section>
+      );
     }
   });
 
@@ -98,12 +112,13 @@ export default function Home({ storyblokData }: PageProps) {
             </div>
           </div>
         </section>
-        <section className={sectionWrapperStyles}>
+        {storyblokContent}
+        {/* <section className={sectionWrapperStyles}>
           <PhotoGallery headline={data?.headline} photos={data?.photos} />
         </section>
         <section className={sectionWrapperStyles}>
           <BecomeMember />
-        </section>
+        </section> */}
       </main>
       {/* <main className={styles.main}>
         <div className={styles.description}>

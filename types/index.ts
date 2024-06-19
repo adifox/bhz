@@ -7,3 +7,8 @@ export interface PageProps {
 }
 
 export type StoryblokItem = ISbComponentType<string> & { [index: string]: any };
+
+export interface ImageProps {
+  alt: string;
+  filename: string;
+}
