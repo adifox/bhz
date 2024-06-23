@@ -1,0 +1,124 @@
+@use "../styles/global/index" as g;
+
+.mainWrapperStyles {
+  display: flex;
+  width: 100%;
+}
+.outlineWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: g.$content-width;
+  margin: 0 auto;
+  padding-top: 48px;
+
+  .subheaderStyles {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 48px;
+    margin-bottom: 24px;
+  }
+
+  h2,
+  .subheaderStyles {
+    text-align: center;
+  }
+}
+.contentWrapperStyles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: g.$content-width;
+  margin: 0 auto;
+  padding-top: 48px;
+}
+.formWrapper {
+  padding-left: 48px;
+  padding-top: 48px;
+
+  .formSection {
+    input,
+    span {
+      border: none;
+      padding: 16px 24px;
+      border: 1px solid grey;
+      border-radius: 5px;
+      margin: 16px 0px;
+    }
+    input {
+      width: 100%;
+    }
+
+    .selectInputSection {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      gap: 8px;
+
+      span {
+        display: flex;
+        flex: 1;
+      }
+
+      select {
+        border: none;
+        width: 100%;
+      }
+    }
+
+    button {
+      padding: 16px 24px;
+      display: flex;
+      color: g.$white;
+      background-color: g.$main-green;
+      border-radius: 5px;
+      justify-content: center;
+      width: 100%;
+      cursor: pointer;
+      margin-top: 48px;
+    }
+  }
+}
+.imageWrapperStyles {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 900px;
+}
+.imageStyles {
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
+}
+
+@media (max-width: g.$small-desktop) {
+  .formWrapper {
+    padding: 16px;
+  }
+}
+
+@media (max-width: g.$tablet-bp) {
+  .outlineWrapper {
+    h2 {
+      font-size: 36px;
+    }
+    .subheaderStyles {
+      font-size: 24px;
+    }
+  }
+  .contentWrapperStyles {
+    display: flex;
+    flex-direction: column;
+  }
+  .imageWrapperStyles {
+    order: 2;
+    display: none;
+  }
+  .formWrapper {
+    order: 1;
+    padding: 16px;
+  }
+}

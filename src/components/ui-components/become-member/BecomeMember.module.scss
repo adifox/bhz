@@ -2,7 +2,7 @@
 
 .mainWrapperStyles {
   width: 100%;
-  max-width: 1200px;
+  max-width: g.$content-width;
 
   h2 {
     font-size: 32px;
@@ -48,8 +48,8 @@
 .linkStyles {
   padding: 16px 24px;
   display: flex;
-  color: white;
-  background-color: #29362f;
+  color: g.$white;
+  background-color: g.$main-green;
   border-radius: 5px;
   max-width: max-content;
 }

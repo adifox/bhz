@@ -80,7 +80,7 @@ export default function Home({ storyblokData }: PageProps) {
             priority
           />
           <div className={heroTextContainerStyles}>
-            <h2>Bienvenido al club de fumadores Buenos Humos Zaragoza</h2>
+            <h2>Bienvenid@ al club de fumadores Buenos Humos Zaragoza</h2>
           </div>
         </div>
         <div className={underHeroBannerStyles}>

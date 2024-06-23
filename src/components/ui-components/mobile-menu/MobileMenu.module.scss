@@ -1,3 +1,5 @@
+@use "../../../styles/global/" as g;
+
 .openedStyles,
 .closedStyles {
   position: fixed;
@@ -6,12 +8,12 @@
   width: 100%;
   height: calc(100% - 80px);
   z-index: 900;
-  top: 89px;
+  top: g.$nav-height;
   right: 0;
   transition: all 0.3s ease;
   padding: 16px;
-  background-color: #29362f;
-  color: #fff;
+  background-color: g.$main-green;
+  color: g.$white;
 
   ul {
     display: flex;
@@ -23,7 +25,7 @@
       list-style: none;
       margin: 16px;
       display: flex;
-      border-bottom: 3px solid #fff;
+      border-bottom: 3px solid g.$white;
       transition: all 0.15s ease;
 
       a {

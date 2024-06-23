@@ -22,21 +22,21 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: g.$content-width;
   height: 400px;
   top: 4vh;
   padding: 0px 16px;
   text-align: center;
 
   h2 {
-    color: #fff;
+    color: g.$white;
     font-size: 64px;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3), 9px 6px 23px rgba(0, 0, 0, 0.78);
   }
 }
 .underHeroBannerStyles {
-  background-color: #29362f;
-  color: #fff;
+  background-color: g.$main-green;
+  color: g.$white;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -58,7 +58,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  max-width: 1200px;
+  max-width: g.$content-width;
 
   .sectionTextWrapperStyles {
     display: flex;
