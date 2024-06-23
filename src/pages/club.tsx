@@ -184,7 +184,7 @@ export default function Page() {
                   onChange={handleChange}
                 />
               </div>
-              <button type="submit">SAVE</button>
+              <button type="submit">Adelante</button>
             </form>
           </div>
         </div>
