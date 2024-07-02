@@ -1,0 +1,58 @@
+@use "../../../styles/global/" as g;
+
+.mainWrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.headlineSectionStyles {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  h1 {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    margin-bottom: 10px;
+  }
+
+  .subHeadlineStyles {
+    line-height: 32px;
+    max-width: 70%;
+  }
+  .authorDateStyles {
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+  }
+}
+.imageWrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 640px;
+  margin: 40px 0px;
+}
+
+@media (max-width: g.$tablet-bp) {
+  .imageWrapper {
+    height: 440px;
+  }
+  .headlineSectionStyles {
+    h1 {
+      font-size: 24px;
+      line-height: 29px;
+    }
+    .subHeadlineStyles {
+      line-height: 24px;
+      max-width: unset;
+    }
+  }
+}
+
+@media (max-width: g.$mobile-bp) {
+  .imageWrapper {
+    height: 240px;
+  }
+}

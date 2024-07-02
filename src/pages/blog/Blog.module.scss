@@ -1,0 +1,65 @@
+@use "../../styles/global/index" as g;
+
+.mainWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-top: 90px;
+
+  .articleContentStyles {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+
+    .articleBodyWrapper {
+      display: flex;
+      justify-content: space-between;
+
+      .articleLeftColumn {
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+      }
+      .articleRightColumn {
+        width: 100%;
+        max-width: 230px;
+        margin: 32px 0px 16px 0px;
+        position: sticky;
+        position: -webkit-sticky;
+        height: max-content;
+        top: 130px;
+      }
+    }
+  }
+}
+
+@media (max-width: g.$small-desktop) {
+  .mainWrapper {
+    padding-top: 60px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: g.$tablet-bp) {
+  .mainWrapper {
+    padding-top: 45px;
+    .articleContentStyles {
+      .articleBodyWrapper {
+        display: block;
+
+        .articleLeftColumn {
+          width: 100%;
+        }
+        .articleRightColumn {
+          width: 100%;
+          max-width: unset;
+          margin: 0px 0px 16px 0px;
+          position: relative;
+          top: unset;
+        }
+      }
+    }
+  }
+}

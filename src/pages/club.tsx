@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState, ChangeEvent } from "react";
 import Image from "next/image";
+import axios from "axios";
 import styles from "../styles/Club.module.scss";
 
 const {
@@ -56,6 +57,8 @@ const defaultValues = {
 
 export default function Page() {
   const [value, setValue] = useState(defaultValues);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
+  const [registerError, setRegisterError] = useState(false);
 
   type T = HTMLInputElement | HTMLSelectElement;
 
@@ -66,11 +69,22 @@ export default function Page() {
     });
   };
 
-  const handleSubmit = (
+  const handleSubmit = async (
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) => {
     event.preventDefault();
     setValue(defaultValues);
+
+    const response = await axios.post("/api/registermember", value);
+
+    console.log("THE REGISTER RESPONSE:", response);
+    if (response.status === 200) {
+      setRegisterSuccess(true);
+    }
+
+    if (response.status > 200) {
+      setRegisterError(true);
+    }
   };
 
   return (
@@ -89,103 +103,116 @@ export default function Page() {
             />
           </div>
           <div className={formWrapper}>
-            <form onSubmit={handleSubmit} className={formSection}>
-              <div className={selectInputSection}>
-                <span>
-                  <select value={value.day} onChange={handleChange} name="day">
-                    {days.map((day, index) => (
-                      <option key={index} value={day}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                </span>
-                <span>
-                  <select
-                    value={value.month}
+            {!registerSuccess ? (
+              <form onSubmit={handleSubmit} className={formSection}>
+                <div className={selectInputSection}>
+                  <span>
+                    <select
+                      value={value.day}
+                      onChange={handleChange}
+                      name="day"
+                    >
+                      {days.map((day, index) => (
+                        <option key={index} value={day}>
+                          {day}
+                        </option>
+                      ))}
+                    </select>
+                  </span>
+                  <span>
+                    <select
+                      value={value.month}
+                      onChange={handleChange}
+                      name="month"
+                    >
+                      {monthsArray.map((month, index) => (
+                        <option key={index} value={month}>
+                          {month}
+                        </option>
+                      ))}
+                    </select>
+                  </span>
+                  <span>
+                    <select
+                      value={value.year}
+                      onChange={handleChange}
+                      name="year"
+                    >
+                      {yearsArray.map((year, index) => (
+                        <option key={index} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
+                  </span>
+                </div>
+                <h3>
+                  Para unirte al Club, necesitamos verificar que tienes más de
+                  18 años.
+                </h3>
+                <input
+                  type="text"
+                  name="name"
+                  value={value.name}
+                  placeholder="Nombre"
+                  onChange={handleChange}
+                />
+                <div className={surnameInputSection}>
+                  <input
+                    type="text"
+                    name="surname"
+                    value={value.surname}
+                    placeholder="Primer apellido"
                     onChange={handleChange}
-                    name="month"
-                  >
-                    {monthsArray.map((month, index) => (
-                      <option key={index} value={month}>
-                        {month}
-                      </option>
-                    ))}
-                  </select>
-                </span>
-                <span>
-                  <select
-                    value={value.year}
+                  />
+                  <input
+                    type="text"
+                    name="secondSurname"
+                    value={value.secondSurname}
+                    placeholder="Segundo apellido"
                     onChange={handleChange}
-                    name="year"
-                  >
-                    {yearsArray.map((year, index) => (
-                      <option key={index} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                </span>
+                  />
+                </div>
+                <div className={inputFieldsSection}>
+                  <input
+                    type="text"
+                    name="dni"
+                    value={value.dni}
+                    placeholder="DNI/NIE"
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    name="city"
+                    value={value.city}
+                    placeholder="Ciudad"
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={value.email}
+                    placeholder="Email"
+                    onChange={handleChange}
+                  />
+                  {/* <input
+                    type="password"
+                    name="password"
+                    value={value.password}
+                    placeholder="Contraseña"
+                    onChange={handleChange}
+                  /> */}
+                </div>
+                <button type="submit">Adelante</button>
+              </form>
+            ) : (
+              <div>
+                <p>
+                  Muchas gracias por registrarte. Recibirás un email de
+                  confirmación junto con tu número de membresía.
+                </p>
               </div>
-              <h3>
-                Para unirte al Club, necesitamos verificar que tienes más de 18
-                años.
-              </h3>
-              <input
-                type="text"
-                name="name"
-                value={value.name}
-                placeholder="Nombre"
-                onChange={handleChange}
-              />
-              <div className={surnameInputSection}>
-                <input
-                  type="text"
-                  name="surname"
-                  value={value.surname}
-                  placeholder="Primer apellido"
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="secondSurname"
-                  value={value.secondSurname}
-                  placeholder="Segundo apellido"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className={inputFieldsSection}>
-                <input
-                  type="text"
-                  name="dni"
-                  value={value.dni}
-                  placeholder="DNI/NIE"
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="city"
-                  value={value.city}
-                  placeholder="Ciudad"
-                  onChange={handleChange}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={value.email}
-                  placeholder="Email"
-                  onChange={handleChange}
-                />
-                <input
-                  type="password"
-                  name="password"
-                  value={value.password}
-                  placeholder="Contraseña"
-                  onChange={handleChange}
-                />
-              </div>
-              <button type="submit">Adelante</button>
-            </form>
+            )}
           </div>
         </div>
       </div>
