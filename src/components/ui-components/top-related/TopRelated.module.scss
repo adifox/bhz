@@ -1,0 +1,69 @@
+@use "../../../styles/global/" as g;
+
+.headerStyles {
+  font-weight: 700;
+}
+
+.miniArticleWrapperStyles {
+  margin-top: 24px;
+
+  .articleTagStyles {
+    margin: 16px 0px;
+    padding: 0px 5px 16px 5px;
+    transition: all 0.15s ease;
+
+    &:hover {
+      border-right: 5px solid g.$main-green;
+      transition: all 0.15s ease;
+    }
+
+    .tagStyles {
+      display: block;
+      padding: 4px 8px;
+      margin-bottom: 8px;
+      background-color: g.$main-green;
+      color: #fff;
+      border-radius: 5px;
+      width: max-content;
+    }
+    .imageWrapper {
+      margin-top: 16px;
+      border-radius: 5px;
+      overflow: hidden;
+      width: 200px;
+      height: 100px;
+      position: relative;
+    }
+    .previewImageStyles {
+      object-fit: cover;
+    }
+  }
+}
+
+@media (max-width: g.$small-desktop) {
+  .headerStyles {
+    text-align: end;
+  }
+  .articleTagStyles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    a {
+      text-align: right;
+    }
+    h4 {
+      text-align: right;
+    }
+  }
+}
+@media (max-width: g.$tablet-bp) {
+  .headerStyles {
+    text-align: left;
+  }
+  .articleTagStyles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

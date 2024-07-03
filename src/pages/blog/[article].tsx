@@ -7,7 +7,7 @@ import {
 } from "../../../utils/storyblok";
 import { PageProps, StoryblokItem } from "../../../types";
 import { ComponentsRenderer } from "@/components/components-renderer";
-import { ArticleHeader } from "@/components/ui-components";
+import { ArticleHeader, TopRelated } from "@/components/ui-components";
 import styles from "./Blog.module.scss";
 
 const {
@@ -24,10 +24,13 @@ export default function Article({ storyblokData, path }: PageProps) {
   const { content } = storyblokData?.data?.story;
 
   let articleHeader = null;
+  let topRelated = null;
   const articleContent = content?.body?.map((blok: StoryblokItem) => {
     console.log("THE STORY COMPONENT", blok);
     if (blok.component === "articleHeader") {
       articleHeader = <ArticleHeader key={blok._uid} blok={blok} />;
+    } else if (blok.component === "topRelated") {
+      topRelated = <TopRelated key={blok._uid} blok={blok} />;
     } else {
       return <ComponentsRenderer key={blok._uid} blok={blok} />;
     }
@@ -39,11 +42,7 @@ export default function Article({ storyblokData, path }: PageProps) {
         {articleHeader}
         <div className={articleBodyWrapper}>
           <div className={articleLeftColumn}>{articleContent}</div>
-          <div className={articleRightColumn}>
-            <div>
-              <p>This is some text and should be sticking around</p>
-            </div>
-          </div>
+          <div className={articleRightColumn}>{topRelated}</div>
         </div>
       </div>
     </div>

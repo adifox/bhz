@@ -27,15 +27,15 @@
 }
 .textContentStyles {
   width: 100%;
-  padding: 48px;
+  padding: 0px 40px 40px;
   display: flex;
   justify-content: flex-end;
 
   .innerTextWrapper {
     max-width: 400px;
     p {
-      font-size: 16px;
-      font-weight: 900;
+      font-size: 21px;
+      font-weight: 400;
     }
   }
 }
@@ -77,6 +77,10 @@
     justify-content: unset;
     .innerTextWrapper {
       max-width: none;
+
+      p {
+        font-size: 16px;
+      }
     }
   }
 

@@ -23,11 +23,7 @@ export const getStoryblokData = async (url, options = {}) => {
     ...options,
     cv: cacheVersion.data.space.version,
     version: process.env.STORYBLOK_VERSION,
-    resolve_relations: [
-      "relatedArticles.relatedArticles",
-      "trending.trending",
-      "latestNewsSection.latestNewsSection",
-    ],
+    resolve_relations: ["topRelated.topRelated"],
   };
   const path = [STORYBLOK_STORIES, url].join("/");
   const data = await Storyblok.get(path, additionalFetchParams);
