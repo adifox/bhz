@@ -34,7 +34,7 @@ export default function Article({ storyblokData, path }: PageProps) {
   return (
     <>
       <Head>
-        <title>{storyblokData.data.story.name}</title>
+        <title>{storyblokData?.data?.story?.name}</title>
         <meta
           name="description"
           content="Club de fumadores Buenos Humos Zaragoza"
@@ -43,23 +43,26 @@ export default function Article({ storyblokData, path }: PageProps) {
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
-        <meta property="og:title" content={storyblokData.data.story.name} />
+        <meta property="og:title" content={storyblokData?.data?.story?.name} />
         <meta
           property="og:image"
           content={storyblokData?.data?.story?.content?.previewImage?.filename}
         />
-        <meta property="og:image:alt" content={storyblokData.data.story.name} />
+        <meta
+          property="og:image:alt"
+          content={storyblokData?.data?.story?.name}
+        />
         <meta
           property="twitter:image"
           content={storyblokData?.data?.story?.content?.previewImage?.filename}
         />
         <meta
           property="twitter:image:alt"
-          content={storyblokData.data.story.name}
+          content={storyblokData?.data?.story?.name}
         />
         <meta
           property="og:description"
-          content={storyblokData.data.story.name}
+          content={storyblokData?.data?.story?.name}
         />
         <meta content="index,follow" name="robots" />
         <link rel="icon" href="/favicon.ico" />
