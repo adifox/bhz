@@ -65,5 +65,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    a {
+      text-align: left;
+    }
+    h4 {
+      text-align: left;
+    }
   }
 }

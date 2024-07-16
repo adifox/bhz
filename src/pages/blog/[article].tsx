@@ -1,10 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import {
-  getStoryblokLinks,
-  getStoryblokData,
-  renderRichtext,
-} from "../../../utils/storyblok";
+import { getStoryblokLinks, getStoryblokData } from "../../../utils/storyblok";
 import { PageProps, StoryblokItem } from "../../../types";
 import { ComponentsRenderer } from "@/components/components-renderer";
 import { ArticleHeader, TopRelated } from "@/components/ui-components";
@@ -21,12 +17,11 @@ const {
 const PAGE_PATH = "blog";
 
 export default function Article({ storyblokData, path }: PageProps) {
-  const { content } = storyblokData?.data?.story;
+  const content = storyblokData?.data?.story?.content;
 
   let articleHeader = null;
   let topRelated = null;
   const articleContent = content?.body?.map((blok: StoryblokItem) => {
-    console.log("THE STORY COMPONENT", blok);
     if (blok.component === "articleHeader") {
       articleHeader = <ArticleHeader key={blok._uid} blok={blok} />;
     } else if (blok.component === "topRelated") {
@@ -37,15 +32,48 @@ export default function Article({ storyblokData, path }: PageProps) {
   });
 
   return (
-    <div className={mainWrapper}>
-      <div className={articleContentStyles}>
-        {articleHeader}
-        <div className={articleBodyWrapper}>
-          <div className={articleLeftColumn}>{articleContent}</div>
-          <div className={articleRightColumn}>{topRelated}</div>
+    <>
+      <Head>
+        <title>{storyblokData.data.story.name}</title>
+        <meta
+          name="description"
+          content="Club de fumadores Buenos Humos Zaragoza"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
+        <meta property="og:title" content={storyblokData.data.story.name} />
+        <meta
+          property="og:image"
+          content={storyblokData?.data?.story?.content?.previewImage?.filename}
+        />
+        <meta property="og:image:alt" content={storyblokData.data.story.name} />
+        <meta
+          property="twitter:image"
+          content={storyblokData?.data?.story?.content?.previewImage?.filename}
+        />
+        <meta
+          property="twitter:image:alt"
+          content={storyblokData.data.story.name}
+        />
+        <meta
+          property="og:description"
+          content={storyblokData.data.story.name}
+        />
+        <meta content="index,follow" name="robots" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className={mainWrapper}>
+        <div className={articleContentStyles}>
+          {articleHeader}
+          <div className={articleBodyWrapper}>
+            <div className={articleLeftColumn}>{articleContent}</div>
+            <div className={articleRightColumn}>{topRelated}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

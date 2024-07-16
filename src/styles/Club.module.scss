@@ -33,14 +33,28 @@
   max-width: g.$content-width;
   margin: 0 auto;
   padding-top: 48px;
+
+  .ctaButtonWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 48px;
+  }
+  .linkStyles {
+    padding: 16px 24px;
+    display: flex;
+    color: g.$white;
+    background-color: g.$main-green;
+    border-radius: 5px;
+    max-width: max-content;
+  }
 }
 .formWrapper {
   padding-left: 48px;
   padding-top: 48px;
 
   .formSection {
-    input,
-    span {
+    input {
       border: none;
       padding: 16px 24px;
       border: 1px solid grey;
@@ -60,11 +74,20 @@
       span {
         display: flex;
         flex: 1;
+        padding: 16px 24px;
+        border: none;
+        border: 1px solid grey;
+        border-radius: 5px;
+        margin: 16px 0px;
       }
 
       select {
+        appearance: none;
+        font-size: 16px;
+        color: black;
         border: none;
         width: 100%;
+        background-color: unset;
       }
     }
 

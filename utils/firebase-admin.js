@@ -1,9 +1,11 @@
 import admin from "firebase-admin";
-import credentials from "../buenos-humos-zaragoza-firebase-adminsdk-vchyb-4ce2a4601d.json";
+import credentials from "../config.json";
 
-admin.initializeApp({
-  credential: admin.credential.cert(credentials),
-});
+if (admin.apps.length === 0) {
+  admin.initializeApp({
+    credential: admin.credential.cert(credentials),
+  });
+}
 
 // Get a reference to the Firestore database
 const db = admin.firestore();
@@ -12,14 +14,33 @@ const db = admin.firestore();
 async function addDocument(userData) {
   try {
     const docRef = await db.collection("users").add(userData);
-    console.log("THE RESPONSE:", docRef);
-    console.log("Document written with ID:", docRef.id);
+
+    return { userId: docRef.id, status: 200 };
   } catch (error) {
     console.error("Error adding document:", error);
+    return error;
   }
 }
 
-// Example: Get a document by ID
+async function checkForUser(mail) {
+  try {
+    const emailQuerySnapshot = await db
+      .collection("users")
+      .where("email", "==", mail)
+      .get();
+
+    // Check if any document exists with the given email
+    if (!emailQuerySnapshot.empty) {
+      console.log("User exists with this email.");
+      return true;
+    }
+
+    return false;
+  } catch (error) {
+    console.error("DB query error:", error);
+  }
+}
+
 async function getDocumentById(docId) {
   try {
     const doc = await db.collection("users").doc(docId).get();
@@ -33,7 +54,6 @@ async function getDocumentById(docId) {
   }
 }
 
-// Example: Update a document by ID
 async function updateDocumentById(docId, data) {
   try {
     await db.collection("users").doc(docId).update(data);
@@ -43,7 +63,6 @@ async function updateDocumentById(docId, data) {
   }
 }
 
-// Example: Delete a document by ID
 async function deleteDocumentById(docId) {
   try {
     await db.collection("users").doc(docId).delete();
@@ -53,9 +72,10 @@ async function deleteDocumentById(docId) {
   }
 }
 
-export { addDocument, getDocumentById, updateDocumentById, deleteDocumentById };
-// Run the functions
-// addDocument();
-// getDocumentById('your-doc-id');
-// updateDocumentById('your-doc-id', { age: 35 });
-// deleteDocumentById('your-doc-id');
+export {
+  addDocument,
+  getDocumentById,
+  updateDocumentById,
+  deleteDocumentById,
+  checkForUser,
+};

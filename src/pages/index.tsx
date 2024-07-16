@@ -54,7 +54,10 @@ export default function Home({ storyblokData }: PageProps) {
           name="description"
           content="Club de fumadores Buenos Humos Zaragoza"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
         <meta
           property="og:title"
           content="Buenos Humos Zaragoza es un club de fumadores de tabacos premium"
@@ -68,7 +71,7 @@ export default function Home({ storyblokData }: PageProps) {
           content="Club de fumadores Buenos Humos Zaragoza"
         />
         <meta content="index,follow" name="robots" />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={mainContainerStyles}>
         <div className={heroContainerStyles}>
