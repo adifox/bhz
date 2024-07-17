@@ -5,7 +5,7 @@ import { generateMembershipNumber } from "../../../utils/helpers";
 import { sendConfirmationMail } from "../.././../utils/mailer";
 
 type Data = {
-  message: string;
+  message?: string | { status: number; userId: string };
 };
 
 export default async function handler(
@@ -37,10 +37,13 @@ export default async function handler(
 
     if (response.status === 200) {
       sendConfirmationMail(memberData);
-    }
 
-    res.status(200).json({ message });
-    return;
+      res.status(200).json({ message });
+      return;
+    } else {
+      res.status(500).json({ message: response });
+      return;
+    }
   }
 
   res.status(500).json({ message });

@@ -1,5 +1,5 @@
 import "dotenv/config";
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
@@ -19,13 +19,13 @@ export const sendConfirmationMail = (memberData) => {
     subject: "Bienvenid@ a Buenos Humos Zaragoza",
     html: htmlString(memberData),
   };
-
+  console.log("SENDING EMIAL:");
   // Send the email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return console.log(error);
+      console.log("EMAIL SENT ERROR:", error);
     }
-    console.log("Email sent: " + info.response);
+    console.log("Email sent: ", info.response);
   });
 };
 
