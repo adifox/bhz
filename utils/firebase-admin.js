@@ -1,4 +1,3 @@
-import "dotenv/config";
 import admin from "firebase-admin";
 
 if (admin.apps.length === 0) {
@@ -7,9 +6,7 @@ if (admin.apps.length === 0) {
       type: process.env.TYPE,
       project_id: process.env.PROJECT_ID,
       private_key_id: process.env.PRIVATE_KEY_ID,
-      private_key: process.env.PRIVATE_KEY
-        ? JSON.parse(process.env.PRIVATE_KEY)
-        : undefined,
+      private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
       client_email: process.env.CLIENT_EMAIL,
       client_id: process.env.CLIENT_ID,
       auth_uri: process.env.AUTH_URI,
@@ -26,6 +23,7 @@ const db = admin.firestore();
 
 // Example: Add a new document to a collection
 async function addDocument(userData) {
+  console.log("ADDING USER:", userData);
   try {
     const docRef = await db.collection("users").add(userData);
 
@@ -37,6 +35,7 @@ async function addDocument(userData) {
 }
 
 async function checkForUser(mail) {
+  console.log("THE FUUK:", mail);
   try {
     const emailQuerySnapshot = await db
       .collection("users")
@@ -52,6 +51,7 @@ async function checkForUser(mail) {
     return false;
   } catch (error) {
     console.error("DB query error:", error);
+    return true;
   }
 }
 
