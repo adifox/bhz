@@ -35,7 +35,7 @@ import sgMail from "@sendgrid/mail";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export const sendConfirmationMail = (memberData) => {
+export const sendConfirmationMail = async (memberData) => {
   const msg = {
     to: "lukasdevarga@gmail.com", // Change to your recipient
     from: "info@buenoshumoszaragoza.com", // Change to your verified sender
@@ -43,12 +43,13 @@ export const sendConfirmationMail = (memberData) => {
     html: htmlString(memberData),
   };
 
-  sgMail
-    .send(msg)
-    .then(() => {
-      console.log("Email sent");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  try {
+    const response = await sgMail.send(msg);
+
+    console.log("SG - MAIL ", response);
+    return response;
+  } catch (error) {
+    console.log("Mail sent ERROR:", error);
+    return error;
+  }
 };

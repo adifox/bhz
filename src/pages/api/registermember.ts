@@ -36,7 +36,9 @@ export default async function handler(
     };
 
     if (response.status === 200) {
-      sendConfirmationMail(memberData);
+      const response = await sendConfirmationMail(memberData);
+
+      console.log("THE FUUKIN MAILER RESPONSE:", response);
 
       res.status(200).json({ message });
       return;
