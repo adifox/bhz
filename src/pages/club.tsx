@@ -78,6 +78,7 @@ export default function Page() {
   const [registerError, setRegisterError] = useState(false);
   const [userName, setUserName] = useState("a Buenos Humos Zaragoza");
   const [formError, setFormError] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   type T = HTMLInputElement | HTMLSelectElement;
 
@@ -105,8 +106,10 @@ export default function Page() {
   const handleSubmit = async (
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) => {
+    setDisableButton(true);
     if (!validateForm(value)) {
       event.preventDefault();
+      setDisableButton(false);
       setFormError(true);
       return;
     }
@@ -277,7 +280,9 @@ export default function Page() {
                     onChange={handleChange}
                   /> */}
                   </div>
-                  <button type="submit">Adelante</button>
+                  <button disabled={disableButton} type="submit">
+                    Adelante
+                  </button>
                 </form>
               ) : registerSuccess && !registerError ? (
                 <div>

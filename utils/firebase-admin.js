@@ -23,7 +23,6 @@ const db = admin.firestore();
 
 // Example: Add a new document to a collection
 async function addDocument(userData) {
-  console.log("ADDING USER:", userData);
   try {
     const docRef = await db.collection("users").add(userData);
 
@@ -35,7 +34,6 @@ async function addDocument(userData) {
 }
 
 async function checkForUser(mail) {
-  console.log("THE FUUK:", mail);
   try {
     const emailQuerySnapshot = await db
       .collection("users")
@@ -44,7 +42,6 @@ async function checkForUser(mail) {
 
     // Check if any document exists with the given email
     if (!emailQuerySnapshot.empty) {
-      console.log("User exists with this email.");
       return true;
     }
 

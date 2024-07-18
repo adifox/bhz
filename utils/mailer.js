@@ -22,23 +22,34 @@ import { htmlString } from "./mailTemplate";
 //   };
 //   console.log("SENDING EMIAL:", transporter);
 //   // Send the email
-//   await transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//       console.log("EMAIL SENT ERROR:", error);
-//     }
-//     console.log("Email sent: ", info.response);
-//   });
+
+//   try {
+//     const response = await transporter.sendMail(mailOptions, (error, info) => {
+//       if (error) {
+//         console.log("EMAIL SENT ERROR:", error);
+//         return error;
+//       }
+
+//       console.log("Email sent: ", info.response);
+//       return info;
+//     });
+
+//     console.log("THE RESPONSE:", response);
+//     return response;
+//   } catch (error) {
+//     console.log("THE ERROR:", error);
+//     return error;
+//   }
 // };
 
-// const sgMail = require('@sendgrid/mail')
 import sgMail from "@sendgrid/mail";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export const sendConfirmationMail = async (memberData) => {
   const msg = {
-    to: "lukasdevarga@gmail.com", // Change to your recipient
-    from: "info@buenoshumoszaragoza.com", // Change to your verified sender
+    to: memberData.email,
+    from: "info@buenoshumoszaragoza.com",
     subject: "Bienvenid@ a Buenos Humos Zaragoza",
     html: htmlString(memberData),
   };
@@ -46,7 +57,6 @@ export const sendConfirmationMail = async (memberData) => {
   try {
     const response = await sgMail.send(msg);
 
-    console.log("SG - MAIL ", response);
     return response;
   } catch (error) {
     console.log("Mail sent ERROR:", error);

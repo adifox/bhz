@@ -4,16 +4,11 @@ import { addDocument, checkForUser } from "../../../utils/firebase-admin";
 import { generateMembershipNumber } from "../../../utils/helpers";
 import { sendConfirmationMail } from "../.././../utils/mailer";
 
-type Data = {
-  message?: string | { status: number; userId: string };
-};
-
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
   const { email, name } = req?.body;
-  const message = "success";
 
   if (email) {
     const userMail = await checkForUser(email);
@@ -38,9 +33,7 @@ export default async function handler(
     if (response.status === 200) {
       const response = await sendConfirmationMail(memberData);
 
-      console.log("THE FUUKIN MAILER RESPONSE:", response);
-
-      res.status(200).json({ message });
+      res.status(200).json({ message: response });
       return;
     } else {
       res.status(500).json({ message: response });
@@ -48,5 +41,5 @@ export default async function handler(
     }
   }
 
-  res.status(500).json({ message });
+  res.status(500).json({ message: "Something went wrong" });
 }
