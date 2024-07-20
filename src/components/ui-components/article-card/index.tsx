@@ -9,7 +9,7 @@ const {
   imageWrapperStyles,
   textAreaStyles,
   metaDataWrapperStyles,
-  folderNameStyles,
+  tagStyles,
 } = styles;
 
 interface ArticleCardProps {
@@ -41,7 +41,7 @@ export const ArticleCard = ({
         </div>
         <div className={textAreaStyles}>
           <div className={metaDataWrapperStyles}>
-            <span className={folderNameStyles}>{pageTag}</span>
+            <span className={tagStyles}>{pageTag}</span>
             <time dateTime={date}>{dateElement}</time>
           </div>
           <h2>{title}</h2>

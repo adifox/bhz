@@ -31,9 +31,7 @@
   width: 100%;
 }
 .textAreaStyles {
-  // padding: 8px 24px 8px 24px;
   padding: 16px;
-  // height: 280px;
   position: relative;
 
   .metaDataWrapperStyles {
@@ -41,11 +39,12 @@
     justify-content: space-between;
   }
 
-  .folderNameStyles {
-    // color: g.$folder-text-color;
-    color: g.$main-green;
+  .tagStyles {
+    padding: 4px 8px;
+    background-color: g.$main-green;
+    color: #fff;
     font-weight: 600;
-    text-decoration: underline 4px;
+    border-radius: 5px;
   }
 
   h2 {
@@ -74,7 +73,6 @@
   .articleCardWrapperStyles {
     &:hover {
       transform: none;
-      // transition: all ease 0.3s;
     }
   }
 }
