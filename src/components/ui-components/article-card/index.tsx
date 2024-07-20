@@ -45,7 +45,7 @@ export const ArticleCard = ({
             <time dateTime={date}>{dateElement}</time>
           </div>
           <h2>{title}</h2>
-          {leadText}
+          <p>{leadText}</p>
         </div>
       </Link>
     </div>
