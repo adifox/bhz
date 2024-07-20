@@ -31,7 +31,6 @@ export const ArticleCard = ({
 }: ArticleCardProps) => {
   const [mediaBlok] = image;
 
-  console.log("THE FUUKIN LINK:", link);
   const dateElement = <Date dateStr={date} />;
 
   return (

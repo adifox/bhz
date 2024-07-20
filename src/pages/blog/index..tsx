@@ -6,8 +6,6 @@ import styles from "./Blog.module.scss";
 const { indexMainWrapper, headerImageWrapper } = styles;
 
 export default function Page({ storyblokData }: StoryblokItem) {
-  console.log("THE STORYBLOK DATA ON THE INDEX:", storyblokData);
-
   const { body } = storyblokData?.data?.story?.content;
   const [headerImage, publishedArticles] = body;
 

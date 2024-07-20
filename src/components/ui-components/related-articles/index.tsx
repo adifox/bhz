@@ -5,12 +5,10 @@ import styles from "./RelatedArticles.module.scss";
 const { mainWrapper, articlesSectionStyles, pageTitleStyles } = styles;
 
 export const RelatedArticles = ({ blok }: StoryblokItem) => {
-  console.log("THE DATA:", blok);
   const { title, relatedArticles } = blok;
 
   const publishedArticles = relatedArticles.map((article: StoryblokItem) => {
     const { content, full_slug: fullSlug } = article;
-    console.log("THE ARTICLE DATA:", article);
 
     const { pageTag } = content;
     const { subHeadline, date, headline, media, author } = content.body[0];

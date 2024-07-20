@@ -19,7 +19,7 @@ interface MediaWrapperProps {
 
 export const ImageWrapper = ({ blok, priority = false }: MediaWrapperProps) => {
   const { height, width, mediaAsset } = blok;
-  console.log("THE BLOK DATA:", mediaAsset);
+
   return (
     <Image
       src={mediaAsset?.filename || ""}
