@@ -19,8 +19,8 @@ export const MobileMenu = ({ open, toggleMenu }: MobileMenuProps) => {
           </Link>
         </li>
         <li onClick={toggleMenu}>
-          <Link href="/sobrenosotros" className={linkStyles}>
-            <span>Sobre nosotros</span>
+          <Link href="/blog" className={linkStyles}>
+            <span>Descubre más</span>
           </Link>
         </li>
         <li onClick={toggleMenu}>

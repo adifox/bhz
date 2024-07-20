@@ -63,3 +63,31 @@
     }
   }
 }
+
+// Blog index styles
+.indexMainWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.headerImageWrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 640px;
+}
+@media (max-width: g.$small-desktop) {
+  .headerImageWrapper {
+    height: 480px;
+  }
+}
+@media (max-width: g.$tablet-bp) {
+  .headerImageWrapper {
+    height: 360px;
+  }
+}
+@media (max-width: g.$mobile-bp) {
+  .headerImageWrapper {
+    height: 240px;
+  }
+}

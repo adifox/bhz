@@ -3,7 +3,7 @@ import styles from "./ImageWrapper.module.scss";
 
 const { imageStyles } = styles;
 
-interface MediaProps {
+export interface MediaProps {
   height: string;
   width: string;
   mediaAsset: {
@@ -18,16 +18,12 @@ interface MediaWrapperProps {
 }
 
 export const ImageWrapper = ({ blok, priority = false }: MediaWrapperProps) => {
-  const {
-    height,
-    width,
-    mediaAsset: { alt, filename },
-  } = blok;
-
+  const { height, width, mediaAsset } = blok;
+  console.log("THE BLOK DATA:", mediaAsset);
   return (
     <Image
-      src={filename}
-      alt={alt}
+      src={mediaAsset?.filename || ""}
+      alt={mediaAsset?.alt || ""}
       height={Number(height)}
       width={Number(width)}
       className={imageStyles}

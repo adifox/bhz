@@ -1,0 +1,51 @@
+@use "../../../styles/global/index" as g;
+
+.mainWrapper {
+  width: 100%;
+  max-width: g.$content-width;
+  margin: 0 auto;
+  padding-top: 48px;
+
+  .pageTitleStyles {
+    margin-bottom: 48px;
+    font-size: 32px;
+  }
+}
+
+.articlesSectionStyles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: g.$small-desktop) {
+  .mainWrapper {
+    padding: 0px 16px;
+
+    .pageTitleStyles {
+      text-align: center;
+      margin: 24px 0px;
+      font-size: 24px;
+    }
+  }
+  .articlesSectionStyles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+@media (max-width: g.$tablet-bp) {
+  .mainWrapper {
+    padding: 0px 8px;
+
+    .pageTitleStyles {
+      text-align: left;
+      margin: 24px 0px;
+      font-size: 24px;
+    }
+  }
+  .articlesSectionStyles {
+    display: flex;
+    flex-direction: column;
+  }
+}
