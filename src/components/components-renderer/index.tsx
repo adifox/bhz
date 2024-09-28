@@ -1,5 +1,6 @@
 import { RichText, Media } from "../ui-components";
 import { StoryblokItem } from "../../../types";
+import { PhotoGallery } from "@/components/ui-components/photo-gallery";
 import styles from "./ComponentsRenderer.module.scss";
 
 const { sectionStyles } = styles;
@@ -7,6 +8,7 @@ const { sectionStyles } = styles;
 const COMPONENTS = {
   richTextComponent: RichText,
   media: Media,
+  imageGallery: PhotoGallery,
 };
 
 export const ComponentsRenderer = ({ blok }: StoryblokItem) => {

@@ -27,7 +27,7 @@ export default function Home({ storyblokData }: PageProps) {
     if (story.component === "imageGallery") {
       return (
         <section key={story._uid} className={sectionWrapperStyles}>
-          <PhotoGallery headline={story?.headline} photos={story?.photos} />
+          <PhotoGallery blok={story} />
         </section>
       );
     }
