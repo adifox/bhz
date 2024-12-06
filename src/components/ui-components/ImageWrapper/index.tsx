@@ -15,9 +15,14 @@ export interface MediaProps {
 interface MediaWrapperProps {
   blok: MediaProps;
   priority?: boolean;
+  classNames?: string;
 }
 
-export const ImageWrapper = ({ blok, priority = false }: MediaWrapperProps) => {
+export const ImageWrapper = ({
+  blok,
+  priority = false,
+  classNames,
+}: MediaWrapperProps) => {
   const { height, width, mediaAsset } = blok;
 
   return (
@@ -26,7 +31,7 @@ export const ImageWrapper = ({ blok, priority = false }: MediaWrapperProps) => {
       alt={mediaAsset?.alt || ""}
       height={Number(height)}
       width={Number(width)}
-      className={imageStyles}
+      className={`${imageStyles} ${classNames}`}
       priority={priority}
     />
   );

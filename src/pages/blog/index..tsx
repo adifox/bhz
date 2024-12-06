@@ -3,7 +3,7 @@ import { StoryblokItem } from "../../../types";
 import { ImageWrapper, RelatedArticles } from "@/components/ui-components";
 import styles from "./Blog.module.scss";
 
-const { indexMainWrapper, headerImageWrapper } = styles;
+const { indexMainWrapper, headerImageWrapper, headerImageStyles } = styles;
 
 export default function Page({ storyblokData }: StoryblokItem) {
   const { body } = storyblokData?.data?.story?.content;
@@ -12,7 +12,11 @@ export default function Page({ storyblokData }: StoryblokItem) {
   return (
     <div className={indexMainWrapper}>
       <div className={headerImageWrapper}>
-        <ImageWrapper blok={headerImage} priority />
+        <ImageWrapper
+          blok={headerImage}
+          classNames={headerImageStyles}
+          priority
+        />
       </div>
       <section>
         <RelatedArticles blok={publishedArticles} />
