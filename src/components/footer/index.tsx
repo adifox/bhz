@@ -23,7 +23,7 @@ export const Footer = () => {
             <h4>Nuestros Amigos</h4>
             <ul>
               <li className={linkItemStyles}>
-                <Link href="https://www.cigarsmokerclub.com">
+                <Link href="https://www.cigarsmokerclub.com" target="_blank">
                   Cigar Smoker Club
                 </Link>
               </li>
