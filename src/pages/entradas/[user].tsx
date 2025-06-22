@@ -1,15 +1,10 @@
+import Users from "./users.json";
 import styles from "./Tickets.module.scss";
 
 const { container, header, content } = styles;
 
 function Entradas({ user }: { user: string }) {
-  const removeMiddleDashAndUppercaseFirstLetter = (name: string) => {
-    return name
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, (char) => char.toUpperCase());
-  };
-
-  const userName = removeMiddleDashAndUppercaseFirstLetter(user);
+  const userData = Users.users.find((u) => u.id === user);
 
   return (
     <div className={container}>
@@ -17,8 +12,14 @@ function Entradas({ user }: { user: string }) {
         <h1>Entradas</h1>
       </div>
       <div className={content}>
-        <h2>Bienvenid@</h2>
-        <h3>{userName}</h3>
+        {userData ? (
+          <>
+            <h2>Bienvenid@</h2>
+            <h3>{userData.name}</h3>
+          </>
+        ) : (
+          <h2>Usuario no encontrado</h2>
+        )}
       </div>
     </div>
   );
