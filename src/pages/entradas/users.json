@@ -6,7 +6,7 @@
       "personas": 1
     },
     {
-      "name": "Lucrecia",
+      "name": "Lucrecia Olga Borja Garcia",
       "id": "112255878",
       "personas": 1
     },
@@ -46,9 +46,9 @@
       "personas": 1
     },
     {
-      "name": "Flechas",
+      "name": "Esneider Flechas",
       "id": "112289873",
-      "personas": 1
+      "personas": 2
     },
     {
       "name": "Carlos Quesada",
@@ -176,7 +176,7 @@
       "personas": 1
     },
     {
-      "name": "Ricardo",
+      "name": "Ricardo Moreno",
       "id": "112257596",
       "personas": 1
     },
@@ -184,6 +184,31 @@
       "name": "Luismi Murillo",
       "id": "333255578798",
       "personas": 1
+    },
+    {
+      "name": "Mario Blanco",
+      "id": "112276597",
+      "personas": 1
+    },
+    {
+      "name": "Ismael Til",
+      "id": "13766655298",
+      "personas": 1
+    },
+    {
+      "name": "Francisco Javier Martinez Moreno",
+      "id": "13765597",
+      "personas": 1
+    },
+    {
+      "name": "Javier Cecilio Cespedes Suarez",
+      "id": "1376598798",
+      "personas": 1
+    },
+    {
+      "name": "Agustin Francisco Lopez Rerragut",
+      "id": "1376595765",
+      "personas": 3
     }
   ]
 }
