@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
 import { PhotoGallery } from "@/components/ui-components/photo-gallery";
 import { BecomeMember } from "@/components/ui-components/become-member";
+import { AgeVerificationModal } from "@/components/ui-components/age-verification-modal";
 import { StoryblokItem, PageProps } from "../../types";
 import { getStoryblokData } from "../../utils/storyblok";
 import styles from "@/styles/Home.module.scss";
@@ -19,6 +21,8 @@ const {
 } = styles;
 
 export default function Home({ storyblokData }: PageProps) {
+  const [isAgeVerified, setIsAgeVerified] = useState<boolean>(false);
+
   const {
     story: { content },
   } = storyblokData.data;
@@ -46,8 +50,13 @@ export default function Home({ storyblokData }: PageProps) {
     }
   });
 
+  const handleAgeVerification = () => {
+    setIsAgeVerified(true);
+  };
+
   return (
     <>
+      <AgeVerificationModal onAgeVerified={handleAgeVerification} />
       <Head>
         <title>Buenos Humos Zaragoza</title>
         <meta
@@ -73,56 +82,58 @@ export default function Home({ storyblokData }: PageProps) {
         <meta content="index,follow" name="robots" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={mainContainerStyles}>
-        <div className={heroContainerStyles}>
-          <Image
-            className={imageStyles}
-            src="/Images/whiskey-and-cigars.jpg"
-            alt="Buenos Humos Zaragoza Logo"
-            fill
-            priority
-          />
-          <div className={heroTextContainerStyles}>
-            <h2>Bienvenid@ al club de fumadores Buenos Humos Zaragoza</h2>
-          </div>
-        </div>
-        <div className={underHeroBannerStyles}>
-          <p>
-            No te pierdas el próximo evento de Buenos Humos Zaragoza.
-            Descúbrenos en Instagram para más detalles.
-          </p>
-        </div>
-        <section className={sectionWrapperStyles}>
-          <div className={sectionInnerWrapperStyles}>
-            <div className={sectionTextWrapperStyles}>
-              <h2>¿Por qué este club?</h2>
-              <p>
-                Somos tres personas comprometidas con la divulgación de los
-                Buenos Humos en Zaragoza. Meros aficionados que quieren seguir
-                aprendiendo sobre tabaco y conociendo a personas afines con este
-                placer hedonista que es fumar tabacos premium. Si tienes el
-                mismo desvarío mental, apúntate a este club para que tus ahorros
-                se vayan en tabaco.
-              </p>
-            </div>
-            <div className={sectionImageWrapperStyles}>
-              <Image
-                className={imageStyles}
-                src="/Images/club-de-fumadores-zaragoza.jpeg"
-                alt="Club de fumadores en Zaragoza"
-                fill
-              />
+      {isAgeVerified && (
+        <main className={mainContainerStyles}>
+          <div className={heroContainerStyles}>
+            <Image
+              className={imageStyles}
+              src="/Images/whiskey-and-cigars.jpg"
+              alt="Buenos Humos Zaragoza Logo"
+              fill
+              priority
+            />
+            <div className={heroTextContainerStyles}>
+              <h2>Bienvenid@ al club de fumadores Buenos Humos Zaragoza</h2>
             </div>
           </div>
-        </section>
-        {storyblokContent}
-        {/* <section className={sectionWrapperStyles}>
+          <div className={underHeroBannerStyles}>
+            <p>
+              No te pierdas el próximo evento de Buenos Humos Zaragoza.
+              Descúbrenos en Instagram para más detalles.
+            </p>
+          </div>
+          <section className={sectionWrapperStyles}>
+            <div className={sectionInnerWrapperStyles}>
+              <div className={sectionTextWrapperStyles}>
+                <h2>¿Por qué este club?</h2>
+                <p>
+                  Somos tres personas comprometidas con la divulgación de los
+                  Buenos Humos en Zaragoza. Meros aficionados que quieren seguir
+                  aprendiendo sobre tabaco y conociendo a personas afines con
+                  este placer hedonista que es fumar tabacos premium. Si tienes
+                  el mismo desvarío mental, apúntate a este club para que tus
+                  ahorros se vayan en tabaco.
+                </p>
+              </div>
+              <div className={sectionImageWrapperStyles}>
+                <Image
+                  className={imageStyles}
+                  src="/Images/club-de-fumadores-zaragoza.jpeg"
+                  alt="Club de fumadores en Zaragoza"
+                  fill
+                />
+              </div>
+            </div>
+          </section>
+          {storyblokContent}
+          {/* <section className={sectionWrapperStyles}>
           <PhotoGallery headline={data?.headline} photos={data?.photos} />
         </section>
         <section className={sectionWrapperStyles}>
           <BecomeMember />
         </section> */}
-      </main>
+        </main>
+      )}
       {/* <main className={styles.main}>
         <div className={styles.description}>
           <p>
