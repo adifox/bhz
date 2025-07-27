@@ -57,7 +57,7 @@ export const Header = () => {
             <ul>
               <li>
                 <Link href="/blog" className={linkStyles}>
-                  <span>Descubre más</span>
+                  <span>Las novedades</span>
                 </Link>
               </li>
               <li>
