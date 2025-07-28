@@ -52,6 +52,12 @@
   gap: 1rem;
 }
 
+.dateInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
 .inputGroup {
   display: flex;
   flex-direction: column;
@@ -61,27 +67,7 @@
     color: #ffffff;
     font-weight: 500;
     font-size: 0.95rem;
-  }
-}
-
-.ageInput {
-  padding: 0.75rem 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  &:focus {
-    outline: none;
-    border-color: #d4af37;
-    background-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+    text-align: center;
   }
 }
 
@@ -151,7 +137,12 @@
     font-size: 0.9rem;
   }
 
-  .ageInput {
+  .dateInputs {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .dateSelect {
     padding: 0.625rem 0.875rem;
     font-size: 0.9rem;
   }
