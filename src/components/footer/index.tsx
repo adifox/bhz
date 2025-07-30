@@ -27,6 +27,11 @@ export const Footer = () => {
                   Cigar Smoker Club
                 </Link>
               </li>
+              <li className={linkItemStyles}>
+                <Link href="https://www.burkinatherevist.com" target="_blank">
+                  Burkina The Revist
+                </Link>
+              </li>
             </ul>
           </div>
           <div className={socialIcons}>
