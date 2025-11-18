@@ -78,6 +78,9 @@ export default function Users() {
       <Head>
         <title>Miembros - Buenos Humos Zaragoza</title>
         <meta name="description" content="Lista de miembros registrados" />
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+        <meta name="bingbot" content="noindex, nofollow" />
       </Head>
       <div
         className={`${styles.container} ${
