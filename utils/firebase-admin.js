@@ -83,10 +83,60 @@ async function deleteDocumentById(docId) {
   }
 }
 
+async function getAllUsers() {
+  try {
+    const usersSnapshot = await db.collection("users").get();
+    const users = [];
+
+    usersSnapshot.forEach((doc) => {
+      users.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+
+    return users;
+  } catch (error) {
+    console.error("Error getting all users:", error);
+    throw error;
+  }
+}
+
+async function getAdminDashboardCode() {
+  try {
+    const adminDoc = await db.collection("admin").doc("dashboard").get();
+
+    if (adminDoc.exists) {
+      return adminDoc.data().code;
+    }
+
+    // If document doesn't exist, create it with the default code
+    const defaultCode = "35462534-3452-4321-64789";
+    await db.collection("admin").doc("dashboard").set({ code: defaultCode });
+    return defaultCode;
+  } catch (error) {
+    console.error("Error getting admin dashboard code:", error);
+    throw error;
+  }
+}
+
+async function verifyAdminCode(inputCode) {
+  try {
+    const storedCode = await getAdminDashboardCode();
+    return storedCode === inputCode;
+  } catch (error) {
+    console.error("Error verifying admin code:", error);
+    return false;
+  }
+}
+
 export {
   addDocument,
   getDocumentById,
   updateDocumentById,
   deleteDocumentById,
   checkForUser,
+  getAllUsers,
+  getAdminDashboardCode,
+  verifyAdminCode,
 };
