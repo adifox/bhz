@@ -122,6 +122,12 @@
   gap: 1rem;
 }
 
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .title {
   font-size: 2.5rem;
   font-weight: 600;
@@ -160,6 +166,35 @@
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+}
+
+.downloadButton {
+  background: linear-gradient(135deg, #29362f 0%, #1a241f 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background: linear-gradient(135deg, #3a4a3f 0%, #29362f 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(41, 54, 47, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(41, 54, 47, 0.4);
   }
 }
 
@@ -291,7 +326,13 @@
     text-align: center;
   }
 
-  .fetchButton {
+  .buttonGroup {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .fetchButton,
+  .downloadButton {
     width: 100%;
   }
 

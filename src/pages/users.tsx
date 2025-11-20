@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import jsPDF from "jspdf";
 import styles from "@/styles/Users.module.scss";
 
 interface Member {
@@ -73,6 +74,115 @@ export default function Users() {
     }
   };
 
+  const downloadPDF = () => {
+    if (members.length === 0) {
+      return;
+    }
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const lineHeight = 8;
+    let yPosition = margin;
+
+    // Title
+    doc.setFontSize(20);
+    doc.setTextColor(41, 54, 47); // Main green color
+    doc.text(
+      "Miembros Registrados - Buenos Humos Zaragoza",
+      pageWidth / 2,
+      yPosition,
+      {
+        align: "center",
+      }
+    );
+    yPosition += lineHeight * 2;
+
+    // Date
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    const date = new Date().toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    doc.text(`Generado el: ${date}`, pageWidth / 2, yPosition, {
+      align: "center",
+    });
+    yPosition += lineHeight * 2;
+
+    // Total count
+    doc.setFontSize(12);
+    doc.setTextColor(41, 54, 47);
+    doc.text(
+      `Total: ${members.length} ${
+        members.length === 1 ? "miembro" : "miembros"
+      }`,
+      margin,
+      yPosition
+    );
+    yPosition += lineHeight * 2;
+
+    // Members list
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+
+    members.forEach((member, index) => {
+      // Check if we need a new page
+      if (yPosition > pageHeight - 40) {
+        doc.addPage();
+        yPosition = margin;
+      }
+
+      // Member number
+      doc.setFontSize(11);
+      doc.setTextColor(41, 54, 47);
+      doc.setFont("helvetica", "bold");
+      const memberTitle = `${index + 1}. ${member.name || "Sin nombre"}`;
+      doc.text(memberTitle, margin, yPosition);
+      yPosition += lineHeight;
+
+      // Membership number
+      if (member.membershipNumber) {
+        doc.setFontSize(9);
+        doc.setTextColor(212, 175, 55); // Gold color
+        doc.setFont("helvetica", "normal");
+        doc.text(
+          `Número de socio: #${member.membershipNumber}`,
+          margin + 5,
+          yPosition
+        );
+        yPosition += lineHeight;
+      }
+
+      // Email
+      if (member.email) {
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Email: ${member.email}`, margin + 5, yPosition);
+        yPosition += lineHeight;
+      }
+
+      // Phone
+      if (member.phone) {
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Teléfono: ${member.phone}`, margin + 5, yPosition);
+        yPosition += lineHeight;
+      }
+
+      // Spacing between members
+      yPosition += lineHeight;
+    });
+
+    // Save the PDF
+    const fileName = `miembros-bhz-${
+      new Date().toISOString().split("T")[0]
+    }.pdf`;
+    doc.save(fileName);
+  };
+
   return (
     <>
       <Head>
@@ -123,13 +233,23 @@ export default function Users() {
           <>
             <div className={styles.header}>
               <h1 className={styles.title}>Miembros Registrados</h1>
-              <button
-                onClick={fetchMembers}
-                disabled={loading}
-                className={styles.fetchButton}
-              >
-                {loading ? "Cargando..." : "Obtener Miembros"}
-              </button>
+              <div className={styles.buttonGroup}>
+                <button
+                  onClick={fetchMembers}
+                  disabled={loading}
+                  className={styles.fetchButton}
+                >
+                  {loading ? "Cargando..." : "Obtener Miembros"}
+                </button>
+                {members.length > 0 && (
+                  <button
+                    onClick={downloadPDF}
+                    className={styles.downloadButton}
+                  >
+                    Descargar PDF
+                  </button>
+                )}
+              </div>
             </div>
 
             {error && <div className={styles.errorMessage}>{error}</div>}
