@@ -15,9 +15,9 @@
     "axios": "^1.7.2",
     "firebase-admin": "^12.2.0",
     "jspdf": "^3.0.4",
-    "next": "14.2.3",
-    "react": "18.2.0",
-    "react-dom": "^18",
+    "next": "^14.2.33",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-photo-gallery": "^8.0.0",
     "sharp": "^0.33.4",
     "storyblok-js-client": "^6.7.3"
@@ -27,7 +27,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "14.2.3",
+    "eslint-config-next": "^14.2.33",
     "sass": "^1.77.2",
     "typescript": "^5"
   }
