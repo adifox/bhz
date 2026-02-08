@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState, ChangeEvent } from "react";
+import { SyntheticEvent, useEffect, useState, ChangeEvent } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -79,6 +79,48 @@ export default function Page() {
   const [userName, setUserName] = useState("a Buenos Humos Zaragoza");
   const [formError, setFormError] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+
+  useEffect(() => {
+    const storedBirthdate = localStorage.getItem("birthdate");
+    if (!storedBirthdate) {
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(storedBirthdate) as {
+        day?: string;
+        month?: string;
+        year?: string;
+      };
+
+      if (!parsed?.day || !parsed?.month || !parsed?.year) {
+        return;
+      }
+
+      const dayValue = Number(parsed.day);
+      const monthIndex = Number(parsed.month) - 1;
+      const yearValue = Number(parsed.year);
+
+      if (
+        Number.isNaN(dayValue) ||
+        Number.isNaN(monthIndex) ||
+        Number.isNaN(yearValue) ||
+        monthIndex < 0 ||
+        monthIndex >= monthsArray.length
+      ) {
+        return;
+      }
+
+      setValue((prev) => ({
+        ...prev,
+        day: dayValue,
+        month: monthsArray[monthIndex],
+        year: yearValue,
+      }));
+    } catch {
+      // Ignore invalid stored data
+    }
+  }, []);
 
   type T = HTMLInputElement | HTMLSelectElement;
 

@@ -117,6 +117,14 @@ export const AgeVerificationModal: React.FC<AgeVerificationModalProps> = ({
 
     if (age >= 18) {
       localStorage.setItem("ageVerified", "true");
+      localStorage.setItem(
+        "birthdate",
+        JSON.stringify({
+          day: selectedDay,
+          month: selectedMonth,
+          year: selectedYear,
+        })
+      );
       setIsVisible(false);
       onAgeVerified();
     } else {
