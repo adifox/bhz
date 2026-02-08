@@ -1,62 +1,33 @@
 // import "dotenv/config";
-// import nodemailer from "nodemailer";
 import { htmlString } from "./mailTemplate";
+import nodemailer from "nodemailer";
 
-// const transporter = nodemailer.createTransport({
-//   host: process.env.EMAIL_HOST,
-//   port: process.env.EMAIL_PORT,
-//   secure: false,
-//   auth: {
-//     user: process.env.EMAIL_USER,
-//     pass: process.env.EMAIL_PASSWORD,
-//   },
-// });
-
-// export const sendConfirmationMail = async (memberData) => {
-//   // Email options
-//   const mailOptions = {
-//     from: process.env.EMAIL_USER,
-//     to: "lukasdevarga@gmail.com",
-//     subject: "Bienvenid@ a Buenos Humos Zaragoza",
-//     html: htmlString(memberData),
-//   };
-//   console.log("SENDING EMIAL:", transporter);
-//   // Send the email
-
-//   try {
-//     const response = await transporter.sendMail(mailOptions, (error, info) => {
-//       if (error) {
-//         console.log("EMAIL SENT ERROR:", error);
-//         return error;
-//       }
-
-//       console.log("Email sent: ", info.response);
-//       return info;
-//     });
-
-//     console.log("THE RESPONSE:", response);
-//     return response;
-//   } catch (error) {
-//     console.log("THE ERROR:", error);
-//     return error;
-//   }
-// };
-
-import sgMail from "@sendgrid/mail";
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    host: "smtp.ionos.es",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+};
 
 export const sendConfirmationMail = async (memberData) => {
-  const msg = {
+  const transporter = createTransporter();
+  const mailOptions = {
     to: memberData.email,
-    from: "info@buenoshumoszaragoza.com",
+    from: process.env.EMAIL_USER,
     subject: "Bienvenid@ a Buenos Humos Zaragoza",
     html: htmlString(memberData),
   };
 
   try {
-    const response = await sgMail.send(msg);
-
+    const response = await transporter.sendMail(mailOptions);
     return response;
   } catch (error) {
     console.log("Mail sent ERROR:", error);

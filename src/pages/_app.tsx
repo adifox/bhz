@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "react-photo-album/rows.css";
 import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import { Layout } from "@/components/layout";
