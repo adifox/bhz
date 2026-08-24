@@ -118,7 +118,7 @@ export default function Home({ storyblokData }: PageProps) {
               <div className={sectionImageWrapperStyles}>
                 <Image
                   className={imageStyles}
-                  src="/Images/club-de-fumadores-zaragoza.jpeg"
+                  src="/Images/buenos-humos-zaragoza-club.jpeg"
                   alt="Club de fumadores en Zaragoza"
                   fill
                 />
