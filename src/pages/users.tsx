@@ -6,8 +6,11 @@ import styles from "@/styles/Users.module.scss";
 interface Member {
   id: string;
   name?: string;
+  surname?: string;
+  secondSurname?: string;
   email?: string;
   membershipNumber?: string;
+  accessCode?: string;
   phone?: string;
   [key: string]: any;
 }
@@ -129,6 +132,10 @@ export default function Users() {
     doc.setTextColor(0, 0, 0);
 
     members.forEach((member, index) => {
+      const fullName = [member.name, member.surname, member.secondSurname]
+        .filter(Boolean)
+        .join(" ");
+
       // Check if we need a new page
       if (yPosition > pageHeight - 40) {
         doc.addPage();
@@ -139,7 +146,7 @@ export default function Users() {
       doc.setFontSize(11);
       doc.setTextColor(41, 54, 47);
       doc.setFont("helvetica", "bold");
-      const memberTitle = `${index + 1}. ${member.name || "Sin nombre"}`;
+      const memberTitle = `${index + 1}. ${fullName || "Sin nombre"}`;
       doc.text(memberTitle, margin, yPosition);
       yPosition += lineHeight;
 
@@ -169,6 +176,13 @@ export default function Users() {
         doc.setFontSize(9);
         doc.setTextColor(0, 0, 0);
         doc.text(`Teléfono: ${member.phone}`, margin + 5, yPosition);
+        yPosition += lineHeight;
+      }
+
+      if (member.accessCode) {
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Código de acceso: ${member.accessCode}`, margin + 5, yPosition);
         yPosition += lineHeight;
       }
 
@@ -291,6 +305,36 @@ export default function Users() {
                             </span>
                             <span className={styles.detailValue}>
                               {member.phone}
+                            </span>
+                          </div>
+                        )}
+                        {member.surname && (
+                          <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>
+                              Primer apellido:
+                            </span>
+                            <span className={styles.detailValue}>
+                              {member.surname}
+                            </span>
+                          </div>
+                        )}
+                        {member.secondSurname && (
+                          <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>
+                              Segundo apellido:
+                            </span>
+                            <span className={styles.detailValue}>
+                              {member.secondSurname}
+                            </span>
+                          </div>
+                        )}
+                        {member.accessCode && (
+                          <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>
+                              Código de acceso:
+                            </span>
+                            <span className={styles.detailValue}>
+                              {member.accessCode}
                             </span>
                           </div>
                         )}
